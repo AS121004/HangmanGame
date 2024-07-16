@@ -7,8 +7,18 @@ class HangmanGame:
         self.master.title("Hangman Game")
         self.master.geometry("900x650")
         self.master.configure(bg='light blue')
-        self.word_list = ["PYTHON", "JAVASCRIPT", "KOTLIN", "JAVA", "RUBY", "SWIFT"]
-        self.secret_word = self.choose_secret_word()
+        
+        self.category_list = ['Coding Language', 'Car Company', 'Cricket Team']
+        self.category_word_list = {
+            'Coding Language': ["Python", "JavaScript", "Java", "Ruby", "PHP", "Swift", "Kotlin", "R", "Go", "TypeScript", "Perl", "Scala", "Dart", "Rust", "Elixir", "Haskell", "MATLAB"],
+            'Car Company': ["Toyota", "Volkswagen", "Ford", "Honda", "Chevrolet", "BMW", "MercedesBenz", "Audi", "Nissan", "Hyundai", "Kia", "Tesla", "Subaru", "Mazda", "Porsche", "Jaguar", "LandRover", "Volvo", "Fiat", "Mitsubishi"],
+            'Cricket Team': ["India", "Australia", "England", "Pakistan", "SouthAfrica", "NewZealand", "WestIndies", "SriLanka", "Bangladesh", "Afghanistan", "Zimbabwe", "Ireland", "Scotland", "Netherlands", "UAE", "Nepal", "Oman", "Namibia", "USA"]
+        }
+        
+        self.choosen_category=''
+        self.word_list = []
+        self.secret_word = ''  #self.choose_secret_word()
+        self.choose_secret_word()
         self.correct_guesses = set()
         self.incorrect_guesses = set()
         self.attempts_left = 7
@@ -20,8 +30,10 @@ class HangmanGame:
         button_font = ("Helvetica", 12, "bold")
         self.hangman_canvas = tk.Canvas(self.master, width=300, height=300, bg="white")
         self.hangman_canvas.pack(pady=10)
+        self.category_display = tk.Label(self.master, text=f'Word is a name of {self.choosen_category}', font=("Helvetica", 20), bg='light blue')
+        self.category_display.pack(pady=(5, 5))
         self.word_display = tk.Label(self.master, text="_ " * len(self.secret_word), font=("Helvetica", 30), bg='light blue')
-        self.word_display.pack(pady=(40, 20))
+        self.word_display.pack(pady=(10, 10))
         self.reset_button = tk.Button(self.master, text="Reset Game", command=self.reset_game, width=20, height=2, bg=button_bg, fg=button_fg, font=button_font)
         self.reset_button.pack(pady=(10, 0))
         self.buttons_frame = tk.Frame(self.master)
@@ -51,7 +63,14 @@ class HangmanGame:
             button.pack(side="left", padx=2, pady=2)
 
     def choose_secret_word(self):
-        return random.choice(self.word_list)
+        self.choose_word_list()
+        # return random.choice(self.word_list)
+        self.secret_word = random.choice(self.word_list).upper()
+        print(self.choosen_category,self.secret_word)
+    
+    def choose_word_list(self):
+        self.choosen_category = random.choice(self.category_list)
+        self.word_list = self.category_word_list[self.choosen_category]
 
     def update_hangman_canvas(self):
         self.hangman_canvas.delete("all")
@@ -98,6 +117,9 @@ class HangmanGame:
     def update_word_display(self):
         displayed_word = " ".join([letter if letter in self.correct_guesses else "_" for letter in self.secret_word])
         self.word_display.config(text=displayed_word)
+        
+    def update_category_display(self):
+        self.category_display.config(text=f'Word is a name of {self.choosen_category}')
 
     def check_game_over(self):
         if set(self.secret_word).issubset(self.correct_guesses):
@@ -122,13 +144,15 @@ class HangmanGame:
         self.restart_button.pack(pady=(10, 20))
 
     def reset_game(self):
-        self.secret_word = self.choose_secret_word()
+        # self.secret_word = self.choose_secret_word()
+        self.choose_secret_word()
         self.correct_guesses = set()
         self.incorrect_guesses = set()
         self.attempts_left = 7
 
         self.hangman_canvas.delete("all")
         self.update_word_display()
+        self.update_category_display()
 
         for frame in self.buttons_frame.winfo_children():
             for button in frame.winfo_children():
