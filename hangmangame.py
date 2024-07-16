@@ -8,11 +8,38 @@ class HangmanGame:
         self.master.geometry("900x650")
         self.master.configure(bg='light blue')
         
-        self.category_list = ['Coding Language', 'Car Company', 'Cricket Team']
+        self.category_list = ['Coding Language', 'Car Company', 'Cricket Team', 'Smartphones', 'Laptops', 'Kitchen Item', 'Living Room Stuff', 'Home Office Item', 'Men Clothing', 'Women Clothing', 'Sportswear', 'Clothing Accessories', 'Footwear', 'Outerwear', 'Fruit', 'Vegetable', 'Snack', 'Dairy', 'Meat', 'Seafood', 'Beverages', 'Outdoor Sport', 'Water Sports Equipment', 'Team Sports Equipment']
         self.category_word_list = {
             'Coding Language': ["Python", "JavaScript", "Java", "Ruby", "PHP", "Swift", "Kotlin", "R", "Go", "TypeScript", "Perl", "Scala", "Dart", "Rust", "Elixir", "Haskell", "MATLAB"],
             'Car Company': ["Toyota", "Volkswagen", "Ford", "Honda", "Chevrolet", "BMW", "MercedesBenz", "Audi", "Nissan", "Hyundai", "Kia", "Tesla", "Subaru", "Mazda", "Porsche", "Jaguar", "LandRover", "Volvo", "Fiat", "Mitsubishi"],
-            'Cricket Team': ["India", "Australia", "England", "Pakistan", "SouthAfrica", "NewZealand", "WestIndies", "SriLanka", "Bangladesh", "Afghanistan", "Zimbabwe", "Ireland", "Scotland", "Netherlands", "UAE", "Nepal", "Oman", "Namibia", "USA"]
+            'Cricket Team': ["India", "Australia", "England", "Pakistan", "SouthAfrica", "NewZealand", "WestIndies", "SriLanka", "Bangladesh", "Afghanistan", "Zimbabwe", "Ireland", "Scotland", "Netherlands", "UAE", "Nepal", "Oman", "Namibia", "USA"],
+            
+            "Smartphones": ["iPhone", "SamsungGalaxy", "GooglePixel", "OnePlus", "SonyXperia", "HuaweiMate", "XiaomiMi"],
+            "Laptops": ["MacBookPro", "DellXPS", "HPSpectre", "LenovoThinkPad", "AsusZenBook", "AcerPredator", "MicrosoftSurface"],
+
+            "Kitchen Item": ["Refrigerator", "Microwave", "Dishwasher", "Oven", "CoffeeMaker", "Blender", "Toaster", "SlowCooker"],
+            "Living Room Stuff": ["Television", "SoundSystem", "AirConditioner", "SmartSpeaker",  "VacuumCleaner", "Fan"],
+            "Home Office Item": ["Printer", "Scanner", "DeskLamp", "PaperShredder", "Monitor", "HardDrive", "Router"],
+
+            "Men Clothing": ["Tshirts", "Jeans", "Suits", "PoloShirts", "Jackets", "Sneakers", "Hoodies"],
+            "Women Clothing": ["Dresses", "Blouses", "Skirts", "Cardigans", "Heels", "Flats", "Handbags", "Scarves"],
+            "Sportswear": ["RunningShoes", "Shorts", "SportsBras", "Leggings", "TankTops", "Sweatbands", "Socks", "Jackets"],
+            "Clothing Accessories": ["Watches", "Handbags", "Sunglasses", "Belts", "Hats", "Jewelry", "Wallets", "Ties"],
+            "Footwear": ["Boots", "Sandals", "Slippers", "Loafers", "FlipFlops", "Clogs", "Wedges", "BalletFlats"],
+            "Outerwear": ["Coats", "Raincoats", "Windbreakers", "Parkas", "Blazers", "TrenchCoats", "Vests", "Ponchos"],
+
+            "Fruit": ["Apples", "Bananas", "Oranges", "Grapes", "Strawberries", "Blueberries", "Pineapples", "Mangoes"],
+            "Vegetable": ["Carrots", "Spinach", "Broccoli", "Potatoes", "Tomatoes", "Cucumbers", "BellPeppers", "Onions"],
+            "Snack": ["Chips", "Chocolate", "Nuts", "GranolaBars", "Popcorn", "Crackers", "Cookies", "Pretzels"],
+            "Dairy": ["Milk", "Cheese", "Yogurt", "Butter", "Cream", "IceCream", "CottageCheese", "SourCream"],
+            "Meat": ["Chicken", "Beef", "Pork", "Lamb", "Turkey", "Bacon", "Sausage", "Ham"],
+            "Seafood": ["Salmon", "Tuna", "Shrimp", "Crab", "Lobster", "Scallops", "Mussels", "Clams"],
+            "Beverages": ["Coffee", "Tea", "Juice", "Soda", "Water", "Beer", "Wine", "Smoothies"],
+
+            "Outdoor Sport": ["Bicycle", "Soccer", "Tennis", "Basketball", "Football", "Golf"],
+            "Water Sports Equipment": ["Surfboard", "Kayak", "Snorkel", "SwimFins", "LifeJacket", "Paddleboard", "ScubaGear", "WaterSkis"],
+            "Team Sports Equipment": ["BaseballBat", "HockeyStick", "Volleyball", "LacrosseStick", "RugbyBall", "CricketBat", "SoftballGlove", "HockeyStick"],
+        
         }
         
         self.choosen_category=''
